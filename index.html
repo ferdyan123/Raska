@@ -82,13 +82,14 @@ body.hov .cur-ring{width:56px;height:56px;border-color:var(--gold)}
   position:fixed;bottom:32px;right:32px;z-index:700;
   display:flex;align-items:center;gap:10px;
   padding:13px 24px;border-radius:100px;
-  background:#25D366;color:#fff;
-  font-family:var(--ff-body);font-size:.72rem;letter-spacing:2px;
+  background:var(--gold);color:var(--black);
+  font-family:var(--ff-body);font-size:.7rem;letter-spacing:2px;
   font-weight:500;text-transform:uppercase;
-  box-shadow:0 8px 40px rgba(37,211,102,.35);
-  transition:transform .4s var(--ease-luxury),box-shadow .4s;
+  border:1px solid rgba(232,213,168,.4);
+  box-shadow:0 8px 40px rgba(200,169,107,.35);
+  transition:transform .4s var(--ease-luxury),box-shadow .4s,background .3s;
 }
-.wa-btn:hover{transform:translateY(-4px);box-shadow:0 16px 56px rgba(37,211,102,.45)}
+.wa-btn:hover{transform:translateY(-4px);background:var(--gold3);box-shadow:0 16px 56px rgba(200,169,107,.5)}
 .wa-btn svg{width:16px;height:16px}
 
 /* ═══════════════════════════════════════════════════
@@ -137,8 +138,13 @@ body.hov .cur-ring{width:56px;height:56px;border-color:var(--gold)}
   border-bottom:1px solid rgba(200,169,107,.12);
 }
 .nav-logo{
-  display:flex;align-items:center;gap:14px;
+  display:flex;align-items:center;gap:12px;
 }
+.nav-logo-img{
+  height:46px;width:auto;display:block;
+  transition:height .6s var(--ease-luxury);
+}
+.nav.stuck .nav-logo-img{height:34px}
 .nav-logo-text{
   font-family:var(--ff-display);
   font-size:1.05rem;letter-spacing:6px;
@@ -190,9 +196,10 @@ body.hov .cur-ring{width:56px;height:56px;border-color:var(--gold)}
    01 — HERO
 ═══════════════════════════════════════════════════ */
 .hero{
-  position:relative;height:100vh;min-height:700px;
+  position:relative;min-height:100vh;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
+  padding:140px 32px 80px;
 }
 .hero-bg{
   position:absolute;inset:0;
@@ -219,8 +226,9 @@ body.hov .cur-ring{width:56px;height:56px;border-color:var(--gold)}
 
 .hero-content{
   position:relative;z-index:3;
-  text-align:center;padding:0 32px;
-  max-width:920px;
+  text-align:center;padding:0 16px;
+  max-width:900px;
+  width:100%;
 }
 .hero-kicker{
   font-family:var(--ff-body);
@@ -231,8 +239,8 @@ body.hov .cur-ring{width:56px;height:56px;border-color:var(--gold)}
 }
 .hero-h1{
   font-family:var(--ff-display);
-  font-size:clamp(3rem,8vw,7.2rem);
-  font-weight:400;line-height:1.06;
+  font-size:clamp(2.4rem,6.2vw,6.4rem);
+  font-weight:400;line-height:1.12;
   color:var(--ivory);
   margin-bottom:0;
   opacity:0;animation:fadeUp 1s .2s var(--ease-luxury) forwards;
@@ -378,16 +386,22 @@ body.hov .cur-ring{width:56px;height:56px;border-color:var(--gold)}
   pointer-events:none;
 }
 /* Floating play circle */
-.play-btn{
-  position:absolute;bottom:56px;right:-28px;z-index:3;
-  width:88px;height:88px;border-radius:50%;
-  background:rgba(200,169,107,.9);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 40px rgba(200,169,107,.4);
-  transition:transform .4s var(--ease-luxury),background .3s;cursor:pointer;
+.crew-badge{
+  position:absolute;bottom:40px;right:-32px;z-index:3;
+  width:160px;
+  border:6px solid var(--black2);
+  box-shadow:0 16px 56px rgba(0,0,0,.5);
+  transition:transform .4s var(--ease-luxury);
 }
-.play-btn:hover{transform:scale(1.1);background:var(--gold3)}
-.play-btn svg{width:20px;height:20px;color:var(--black);margin-left:3px}
+.crew-badge:hover{transform:translateY(-6px)}
+.crew-badge img{width:100%;height:200px;object-fit:cover;display:block}
+.crew-badge-label{
+  position:absolute;bottom:-1px;left:-1px;right:-1px;
+  background:rgba(11,11,11,.85);backdrop-filter:blur(8px);
+  padding:8px 12px;
+  font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--gold3);text-align:center;font-weight:400;
+}
 
 .story-content{
   background:var(--black2);
@@ -677,6 +691,14 @@ body.hov .cur-ring{width:56px;height:56px;border-color:var(--gold)}
   width:54px;height:54px;border-radius:50%;object-fit:cover;
   border:1px solid rgba(200,169,107,.3);
 }
+.testi-avatar-mono{
+  width:54px;height:54px;border-radius:50%;
+  border:1px solid rgba(200,169,107,.35);
+  background:linear-gradient(135deg,rgba(200,169,107,.15),rgba(200,169,107,.04));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-display);font-size:1.05rem;font-weight:500;
+  color:var(--gold3);flex-shrink:0;letter-spacing:1px;
+}
 .testi-name{font-weight:500;font-size:.88rem;color:var(--ivory);display:block}
 .testi-loc{font-size:.72rem;color:var(--taupe);margin-top:2px;font-weight:300}
 
@@ -851,7 +873,8 @@ footer{
   border-bottom:1px solid rgba(255,255,255,.05);
   margin-bottom:36px;
 }
-.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.foot-logo-img{height:36px;width:auto;display:block}
 .foot-brand-name{
   font-family:var(--ff-display);font-size:1rem;letter-spacing:5px;
   text-transform:uppercase;color:var(--ivory);font-weight:400;
@@ -921,7 +944,8 @@ footer{
   .story-visual{min-height:360px}
   .story-visual::after{background:linear-gradient(to bottom,transparent 50%,var(--black2))}
   .story-content{padding:60px 32px}
-  .play-btn{right:16px;bottom:16px}
+  .crew-badge{right:16px;bottom:16px;width:120px}
+  .crew-badge img{height:150px}
 
   .services-grid{grid-template-columns:1fr 1fr}
 
@@ -943,7 +967,10 @@ footer{
 }
 @media(max-width:600px){
   .services-grid,.process-list{grid-template-columns:1fr}
-  .hero-h1{font-size:clamp(2.4rem,11vw,4rem)}
+  .hero{padding:120px 20px 100px}
+  .hero-h1{font-size:clamp(2rem,9vw,3.2rem);line-height:1.18}
+  .hero-kicker{letter-spacing:5px;margin-bottom:24px}
+  .hero-sub{font-size:.82rem}
   .wa-btn .wa-txt{display:none}
   .wa-btn{padding:14px 16px}
 }
@@ -977,18 +1004,7 @@ footer{
 <!-- NAVBAR -->
 <nav class="nav" id="navbar">
   <a href="#" class="nav-logo">
-    <!-- RA Monogram SVG (inline, scales with the brand) -->
-    <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="RASKA monogram">
-      <!-- R -->
-      <path d="M8 10 L8 38" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M8 10 Q20 10 20 18 Q20 26 8 26" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-      <path d="M13 26 L22 38" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round"/>
-      <!-- A -->
-      <path d="M26 38 L33 10 L40 38" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M28.5 29 L37.5 29" stroke="#C8A96B" stroke-width="1.2" stroke-linecap="round"/>
-      <!-- small botanical dot accent -->
-      <circle cx="33" cy="7" r="1.2" fill="#C8A96B" opacity=".5"/>
-    </svg>
+    <img src="photos/raska-logo.png" alt="RASKA monogram" class="nav-logo-img">
     <span class="nav-logo-text">Raska</span>
   </a>
   <ul class="nav-links">
@@ -1014,14 +1030,12 @@ footer{
   <div class="hero-content">
     <div class="hero-kicker">Wedding Organizer &nbsp;·&nbsp; Est. 2018</div>
     <h1 class="hero-h1">
-      Creating Unforgettable<br>
-      <em>Moments for Your</em>
-      Most Precious Day
+      Creating Unforgettable
+      <em>Moments for Your Most Precious Day</em>
     </h1>
     <div class="hero-line" aria-hidden="true"></div>
     <p class="hero-sub">
-      Kami menghadirkan pengalaman pernikahan yang elegan, berkelas,<br>
-      dan tak terlupakan melalui perencanaan yang detail dan eksekusi yang sempurna.
+      Kami menghadirkan pengalaman pernikahan yang elegan, berkelas, dan tak terlupakan melalui perencanaan yang detail dan eksekusi yang sempurna.
     </p>
     <div class="hero-btns">
       <a href="#packages" class="btn-primary">Lihat Paket</a>
@@ -1061,12 +1075,13 @@ footer{
 <section class="story" id="story">
   <div class="story-visual rv-l">
     <img
-      src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=85"
-      alt="Our story — RASKA Wedding"
+      src="photos/Wedding_Planner_Indonesia.jpg"
+      alt="Tim RASKA Wedding Planner"
       class="story-img" loading="lazy"
     >
-    <div class="play-btn" aria-label="Watch our story">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <div class="crew-badge">
+      <img src="photos/Crew_Sansis_Wedding.jpg" alt="Tim RASKA di lapangan" loading="lazy">
+      <div class="crew-badge-label">Tim Kami di Lapangan</div>
     </div>
   </div>
   <div class="story-content">
@@ -1165,27 +1180,27 @@ footer{
 
     <div class="port-grid">
       <div class="port-item rv-l">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=85" alt="Anika & Bram" class="port-img" loading="lazy">
+        <img src="photos/Cantik.jpg" alt="Pernikahan Glamor" class="port-img" loading="lazy">
         <div class="port-overlay">
           <div class="port-tag">Grand Ballroom · Jakarta</div>
-          <div class="port-title">Anika &amp; Bram</div>
-          <div class="port-meta">September 2024 &nbsp;·&nbsp; 500 Tamu</div>
+          <div class="port-title">Pernikahan Glamor</div>
+          <div class="port-meta">Konsep Modern &nbsp;·&nbsp; 500 Tamu</div>
         </div>
       </div>
       <div class="port-item rv-r">
-        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=85" alt="Sari & Dimas" class="port-img" loading="lazy">
+        <img src="photos/Wedding_adat_batak_toba___kayanaphotography.jpg" alt="Pernikahan Adat Batak Toba" class="port-img" loading="lazy">
         <div class="port-overlay">
-          <div class="port-tag">Garden · Bandung</div>
-          <div class="port-title">Sari &amp; Dimas</div>
-          <div class="port-meta">Juli 2024 &nbsp;·&nbsp; 300 Tamu</div>
+          <div class="port-tag">Adat Batak Toba</div>
+          <div class="port-title">Warisan Budaya</div>
+          <div class="port-meta">Upacara Tradisional &nbsp;·&nbsp; 300 Tamu</div>
         </div>
       </div>
       <div class="port-item rv-r d2">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=85" alt="Rini & Hendra" class="port-img" loading="lazy">
+        <img src="photos/_-23.jpg" alt="Pernikahan Adat Tradisional" class="port-img" loading="lazy">
         <div class="port-overlay">
-          <div class="port-tag">Outdoor · Yogyakarta</div>
-          <div class="port-title">Rini &amp; Hendra</div>
-          <div class="port-meta">Maret 2024 &nbsp;·&nbsp; 150 Tamu</div>
+          <div class="port-tag">Adat Sunda</div>
+          <div class="port-title">Keanggunan Klasik</div>
+          <div class="port-meta">Upacara Adat &nbsp;·&nbsp; 250 Tamu</div>
         </div>
       </div>
       <div class="port-item">
@@ -1312,7 +1327,7 @@ footer{
         <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
         <p class="testi-q">Raska benar-benar mewujudkan impian kami. Setiap detail diperhatikan dengan luar biasa. Hari pernikahan kami berjalan sempurna — saya bahkan sempat menangis bahagia karena terkejut dengan hasilnya.</p>
         <div class="testi-author">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" class="testi-avatar" alt="Ayu" loading="lazy">
+          <div class="testi-avatar-mono">AR</div>
           <div>
             <span class="testi-name">Ayu &amp; Rafi</span>
             <span class="testi-loc">Grand Ballroom Jakarta · Maret 2024</span>
@@ -1323,7 +1338,7 @@ footer{
         <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
         <p class="testi-q">Tim Raska mengubah proses persiapan yang biasanya menegangkan menjadi pengalaman yang sangat menyenangkan. Mereka responsif, profesional, dan benar-benar peduli. Hasilnya jauh melampaui ekspektasi.</p>
         <div class="testi-author">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" class="testi-avatar" alt="Dito" loading="lazy">
+          <div class="testi-avatar-mono">DS</div>
           <div>
             <span class="testi-name">Dito &amp; Sari</span>
             <span class="testi-loc">Garden Wedding Bandung · Januari 2024</span>
@@ -1334,7 +1349,7 @@ footer{
         <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
         <p class="testi-q">Dekorasi yang Raska ciptakan jauh melampaui imajinasi kami. Tamu masih membicarakannya hingga sekarang. Satu hal yang saya syukuri: di hari itu, saya tidak memikirkan apa pun kecuali suami saya.</p>
         <div class="testi-author">
-          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" class="testi-avatar" alt="Maya" loading="lazy">
+          <div class="testi-avatar-mono">MK</div>
           <div>
             <span class="testi-name">Maya &amp; Kevin</span>
             <span class="testi-loc">Outdoor Yogyakarta · November 2023</span>
@@ -1475,13 +1490,7 @@ footer{
   <div class="foot-top">
     <div>
       <div class="foot-brand">
-        <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
-          <path d="M8 10 L8 38" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round"/>
-          <path d="M8 10 Q20 10 20 18 Q20 26 8 26" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-          <path d="M13 26 L22 38" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round"/>
-          <path d="M26 38 L33 10 L40 38" stroke="#C8A96B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M28.5 29 L37.5 29" stroke="#C8A96B" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
+        <img src="photos/raska-logo.png" alt="RASKA monogram" class="foot-logo-img">
         <span class="foot-brand-name">Raska</span>
       </div>
       <p class="foot-desc">Mewujudkan hari terindah dalam hidup Anda dengan sentuhan elegan, penuh cinta, dan perhatian pada setiap detail.</p>
@@ -1529,7 +1538,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
   ring.style.cssText=`left:${rx}px;top:${ry}px`;
   requestAnimationFrame(loop);
 })();
-document.querySelectorAll('a,button,[data-tilt],.play-btn,.testi-prev,.testi-next,.testi-dot,.faq-q,.pkg-card,.svc-card').forEach(el=>{
+document.querySelectorAll('a,button,[data-tilt],.testi-prev,.testi-next,.testi-dot,.faq-q,.pkg-card,.svc-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
 });
